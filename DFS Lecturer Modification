@@ -1,0 +1,49 @@
+#contoh peta 
+peta = {
+        'A':set(['B']),
+        'B':set(['A','C','D']),
+        'C':set(['B','H']),
+        'D':set(['B','E']),
+        'E':set(['D','H','F','G','I']),
+        'F':set(['E']),
+        'G':set(['E','I','J']),
+        'H':set(['C','E']),
+        'I':set(['E','G']),
+        'J':set(['G','K','L']),
+        'K':set(['J','L']),
+        'L':set(['J','K'])}
+
+def dfs(graf, start, finish):
+    stack = [[start]]
+    visited = set()
+
+    while stack:
+        
+        panjang_tumpukan = len(stack)-1
+        
+        
+        jalur = stack.pop(panjang_tumpukan)
+
+        
+        state = jalur[-1]
+
+        
+        if state == finish:
+            return jalur
+        
+        elif state not in visited:
+            
+            for cabang in graf.get(state, []):
+                jalur_baru = list(jalur) 
+                jalur_baru.append(cabang) 
+                stack.append(jalur_baru)
+
+            
+            visited.add(state)
+
+
+       
+        isi = len(stack)
+        if isi == 0:
+            print("Tidak ditemukan")
+
