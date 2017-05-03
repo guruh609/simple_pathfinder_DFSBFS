@@ -1,0 +1,46 @@
+#contoh peta 
+peta = {
+        'A':set(['B']),
+        'B':set(['A','C','D']),
+        'C':set(['B','H']),
+        'D':set(['B','E']),
+        'E':set(['D','H','F','G','I']),
+        'F':set(['E']),
+        'G':set(['E','I','J']),
+        'H':set(['C','E']),
+        'I':set(['E','G']),
+        'J':set(['G','K','L']),
+        'K':set(['J','L']),
+        'L':set(['J','K'])}
+
+def bfs(graf, start, finish):
+    queue = [[start]]
+    kunjungan = set()
+
+    while queue:     
+      
+        jalur = queue.pop(0)
+
+        
+        posisi = jalur[-1]
+
+   
+        if posisi == finish:
+            return jalur
+       
+        elif posisi not in kunjungan:
+           
+            for cabang in graf.get(posisi, []): 
+                jalur_baru = list(jalur) 
+                jalur_baru.append(cabang) 
+                queue.append(jalur_baru) 
+
+           
+            kunjungan.add(posisi)
+
+
+
+
+       
+
+
